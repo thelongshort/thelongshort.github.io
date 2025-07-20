@@ -1,86 +1,130 @@
+
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { TrendingUp, ArrowRight } from "lucide-react"
+import { TrendingUp, ArrowRight, BarChart3, Target, Activity } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-background overflow-hidden">
-      {/* Sophisticated Background */}
+    <section className="relative min-h-screen bg-gradient-hero overflow-hidden">
+      {/* Modern Background Elements */}
       <div className="absolute inset-0">
-        <svg viewBox="0 0 1200 800" className="absolute inset-0 w-full h-full opacity-40">
+        {/* Floating geometric elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-accent rounded-full blur-xl opacity-20 animate-float"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-accent-cyan/30 rounded-lg rotate-45 animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-40 left-1/4 w-20 h-20 bg-accent-purple/40 rounded-full animate-float" style={{ animationDelay: '4s' }}></div>
+        
+        {/* Grid pattern overlay */}
+        <svg viewBox="0 0 1200 800" className="absolute inset-0 w-full h-full opacity-10">
           <defs>
-            <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(220 70% 50%)" stopOpacity="0.6" />
-              <stop offset="50%" stopColor="hsl(45 100% 65%)" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="hsl(220 60% 25%)" stopOpacity="0.1" />
-            </linearGradient>
-            <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(45 100% 65%)" stopOpacity="0.4" />
-              <stop offset="50%" stopColor="hsl(220 70% 50%)" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="hsl(210 15% 70%)" stopOpacity="0.1" />
-            </linearGradient>
+            <pattern id="modernGrid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M0,60 L60,0" stroke="hsl(var(--accent-purple))" strokeWidth="0.5"/>
+              <path d="M0,0 L60,60" stroke="hsl(var(--accent-cyan))" strokeWidth="0.5"/>
+            </pattern>
           </defs>
-          
-          {/* Flowing wave paths */}
-          <path 
-            d="M0,400 C300,200 600,600 1200,300 L1200,800 L0,800 Z" 
-            fill="url(#wave1)"
-            className="animate-pulse"
-          />
-          <path 
-            d="M0,500 C400,300 700,700 1200,400 L1200,800 L0,800 Z" 
-            fill="url(#wave2)"
-            className="animate-pulse"
-            style={{ animationDelay: '1s' }}
-          />
-          
-          {/* Institutional grid overlay */}
-          <pattern id="grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M0,60 L60,0" stroke="hsl(45 100% 65%)" strokeWidth="0.5" opacity="0.2"/>
-            <path d="M0,0 L60,60" stroke="hsl(45 100% 65%)" strokeWidth="0.5" opacity="0.2"/>
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" opacity="0.1"/>
+          <rect width="100%" height="100%" fill="url(#modernGrid)"/>
         </svg>
+        
+        {/* Gradient orbs */}
+        <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-gradient-radial from-accent-purple/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-gradient-radial from-accent-cyan/15 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20 min-h-screen flex items-center">
-        <div className="w-full max-w-5xl">
-          {/* Notification Badge */}
-          <div className="mb-8">
-            <Badge variant="secondary" className="bg-card/40 text-accent-gold border-accent-gold/30 backdrop-blur-sm">
-              <TrendingUp className="w-4 h-4 mr-2" />
-              $2.3T in institutional assets tracked
-            </Badge>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20 min-h-screen">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+          {/* Left Content */}
+          <div className="space-y-8">
+            {/* Notification Badge */}
+            <div className="inline-block">
+              <Badge variant="secondary" className="bg-gradient-glass backdrop-blur-sm text-accent-cyan border-accent-cyan/30 px-4 py-2">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                $4.2T in hedge fund assets tracked
+              </Badge>
+            </div>
+            
+            {/* Main Headline */}
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight">
+                <span className="block text-white mb-2">Capitalize on</span>
+                <span className="block bg-gradient-text bg-clip-text text-transparent">
+                  Hedge Fund Intelligence
+                </span>
+              </h1>
+            </div>
+            
+            {/* Subheading */}
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
+              Join Long & Short to tap into market-moving strategies and start earning superior insights today.
+            </p>
+            
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-start gap-6 pt-4">
+              <Button 
+                size="lg"
+                className="bg-gradient-button hover:shadow-glow text-white font-semibold px-10 py-6 text-lg transition-all duration-300 hover:scale-105 rounded-xl"
+              >
+                Join Long & Short Now
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              
+              <button className="text-accent-cyan hover:text-white font-medium text-lg underline underline-offset-4 decoration-accent-cyan transition-colors">
+                View Sample Intelligence
+              </button>
+            </div>
           </div>
           
-          {/* Main Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold leading-tight mb-8">
-            <span className="block text-white mb-2">Institutional capital</span>
-            <span className="block bg-gradient-text bg-clip-text text-transparent">
-              allocation intelligence
-            </span>
-          </h1>
-          
-          {/* Subheading */}
-          <p className="text-xl md:text-2xl text-accent-platinum mb-12 max-w-3xl leading-relaxed">
-            Advanced insights into institutional investor transactions, asset allocation strategies, 
-            and capital flow patterns across global markets.
-          </p>
-          
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start gap-6">
-            <Button 
-              size="lg"
-              className="bg-gradient-button hover:shadow-gold text-accent-foreground font-semibold px-10 py-6 text-lg transition-all duration-300 hover:scale-105"
-            >
-              ACCESS PLATFORM
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            
-            <button className="text-accent-platinum hover:text-white font-medium text-lg underline underline-offset-4 decoration-accent-gold transition-colors">
-              VIEW SAMPLE INSIGHTS
-            </button>
+          {/* Right Visual Elements */}
+          <div className="relative lg:flex hidden items-center justify-center">
+            <div className="relative w-full max-w-lg">
+              {/* Main floating card */}
+              <div className="bg-gradient-glass backdrop-blur-sm rounded-2xl p-8 shadow-glass border border-accent-purple/20 animate-float">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-white">Portfolio Alpha</h3>
+                    <div className="flex items-center text-accent-success">
+                      <TrendingUp className="w-4 h-4 mr-1" />
+                      <span className="text-sm font-medium">+14.7%</span>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground">Long Positions</span>
+                      <span className="text-white font-medium">67%</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-muted-foreground">Short Positions</span>
+                      <span className="text-white font-medium">33%</span>
+                    </div>
+                    <div className="w-full bg-secondary rounded-full h-2">
+                      <div className="bg-gradient-accent h-2 rounded-full" style={{ width: '67%' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating mini cards */}
+              <div className="absolute -top-4 -right-4 bg-gradient-glass backdrop-blur-sm rounded-xl p-4 shadow-glass border border-accent-cyan/20 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="flex items-center space-x-2">
+                  <BarChart3 className="w-5 h-5 text-accent-cyan" />
+                  <span className="text-white font-medium text-sm">Risk: 0.24</span>
+                </div>
+              </div>
+              
+              <div className="absolute -bottom-4 -left-4 bg-gradient-glass backdrop-blur-sm rounded-xl p-4 shadow-glass border border-accent-purple/20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="flex items-center space-x-2">
+                  <Target className="w-5 h-5 text-accent-purple" />
+                  <span className="text-white font-medium text-sm">Sharpe: 1.89</span>
+                </div>
+              </div>
+              
+              <div className="absolute top-1/2 -left-8 bg-gradient-glass backdrop-blur-sm rounded-xl p-4 shadow-glass border border-accent-success/20 animate-float" style={{ animationDelay: '3s' }}>
+                <div className="flex items-center space-x-2">
+                  <Activity className="w-5 h-5 text-accent-success" />
+                  <span className="text-white font-medium text-sm">Vol: 12.3%</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

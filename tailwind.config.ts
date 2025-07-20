@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,24 +63,27 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				'accent-gold': 'hsl(var(--accent-gold))',
-				'accent-platinum': 'hsl(var(--accent-platinum))',
+				'accent-purple': 'hsl(var(--accent-purple))',
+				'accent-cyan': 'hsl(var(--accent-cyan))',
 				'accent-navy': 'hsl(var(--accent-navy))',
-				'accent-blue': 'hsl(var(--accent-blue))'
+				'accent-blue': 'hsl(var(--accent-blue))',
+				'accent-success': 'hsl(var(--accent-success))',
+				'accent-danger': 'hsl(var(--accent-danger))'
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-card': 'var(--gradient-card)',
 				'gradient-button': 'var(--gradient-button)',
 				'gradient-text': 'var(--gradient-text)',
-				'gradient-gold': 'var(--gradient-gold)',
-				'gradient-institutional': 'var(--gradient-institutional)'
+				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-glass': 'var(--gradient-glass)'
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
 				'card': 'var(--shadow-card)',
 				'lift': 'var(--shadow-lift)',
-				'gold': 'var(--shadow-gold)'
+				'purple': 'var(--shadow-purple)',
+				'glass': 'var(--shadow-glass)'
 			},
 			fontFamily: {
 				'primary': 'var(--font-primary)',
@@ -129,10 +133,10 @@ export default {
 				},
 				'float': {
 					'0%, 100%': {
-						transform: 'translateY(0px)'
+						transform: 'translateY(0px) rotate(0deg)'
 					},
 					'50%': {
-						transform: 'translateY(-10px)'
+						transform: 'translateY(-10px) rotate(2deg)'
 					}
 				},
 				'scroll': {
@@ -142,6 +146,14 @@ export default {
 					'100%': {
 						transform: 'translateX(-50%)'
 					}
+				},
+				'glow': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.8'
+					}
 				}
 			},
 			animation: {
@@ -149,8 +161,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-up': 'slide-up 0.6s ease-out',
-				'float': 'float 3s ease-in-out infinite',
-				'scroll': 'scroll 60s linear infinite'
+				'float': 'float 6s ease-in-out infinite',
+				'scroll': 'scroll 60s linear infinite',
+				'glow': 'glow 2s ease-in-out infinite'
 			}
 		}
 	},

@@ -1,52 +1,53 @@
+
 import { TrendingUp, TrendingDown } from "lucide-react"
 
 const metricsData = [
   {
-    label: "PE DRY POWDER",
-    value: "$3.7T",
-    change: "+8.3%",
-    isPositive: true
-  },
-  {
-    label: "AVERAGE DEAL SIZE",
-    value: "$124M",
-    change: "-2.1%",
-    isPositive: false
-  },
-  {
-    label: "FUND DEPLOYMENT",
-    value: "67%",
+    label: "HEDGE FUND AUM",
+    value: "$4.2T",
     change: "+12.4%",
     isPositive: true
   },
   {
-    label: "EXIT MULTIPLE",
-    value: "2.8x",
-    change: "+5.7%",
+    label: "AVERAGE FUND SIZE",
+    value: "$847M",
+    change: "+8.7%",
     isPositive: true
   },
   {
-    label: "ACTIVE FUNDS",
-    value: "8,947",
-    change: "+15.2%",
+    label: "NET PERFORMANCE",
+    value: "11.3%",
+    change: "+3.2%",
     isPositive: true
   },
   {
-    label: "PORTFOLIO COMPANIES",
-    value: "11,200+",
-    change: "+9.8%",
+    label: "SHARPE RATIO",
+    value: "1.24",
+    change: "+0.18",
     isPositive: true
   },
   {
-    label: "MEDIAN IRR",
-    value: "14.2%",
-    change: "-1.3%",
+    label: "ACTIVE STRATEGIES",
+    value: "12,400+",
+    change: "+18.6%",
+    isPositive: true
+  },
+  {
+    label: "ALPHA GENERATION",
+    value: "4.7%",
+    change: "+1.2%",
+    isPositive: true
+  },
+  {
+    label: "MARKET EXPOSURE",
+    value: "73%",
+    change: "-2.1%",
     isPositive: false
   },
   {
-    label: "FUNDRAISING YTD",
-    value: "$901B",
-    change: "+22.1%",
+    label: "NEW LAUNCHES YTD",
+    value: "1,847",
+    change: "+24.3%",
     isPositive: true
   }
 ]
@@ -56,20 +57,20 @@ export function MetricsCarousel() {
   const duplicatedMetrics = [...metricsData, ...metricsData]
 
   return (
-    <div className="bg-slate-900 border-b border-slate-700 overflow-hidden">
+    <div className="bg-gradient-to-r from-accent-navy via-secondary to-accent-navy border-b border-accent-purple/30 overflow-hidden">
       <div className="relative">
         <div className="flex animate-scroll items-center whitespace-nowrap">
           {duplicatedMetrics.map((metric, index) => (
             <div key={index} className="flex items-center px-6 py-3 min-w-fit">
               <div className="flex items-center space-x-2">
-                <span className="text-slate-400 text-sm font-medium">
+                <span className="text-muted-foreground text-sm font-medium">
                   {metric.label}
                 </span>
                 <span className="text-white font-bold text-sm">
                   {metric.value}
                 </span>
                 <div className={`flex items-center space-x-1 ${
-                  metric.isPositive ? 'text-green-400' : 'text-red-400'
+                  metric.isPositive ? 'text-accent-success' : 'text-accent-danger'
                 }`}>
                   {metric.isPositive ? (
                     <TrendingUp className="w-3 h-3" />
@@ -79,7 +80,7 @@ export function MetricsCarousel() {
                   <span className="text-xs font-medium">{metric.change}</span>
                 </div>
               </div>
-              <div className="w-px h-4 bg-slate-600 ml-6" />
+              <div className="w-px h-4 bg-accent-purple/30 ml-6" />
             </div>
           ))}
         </div>

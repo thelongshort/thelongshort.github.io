@@ -1,63 +1,67 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Allocators Almanac Design System - Institutional Investment Platform
+/* Long & Short Design System - Hedge Fund Intelligence Platform
 All colors MUST be HSL for proper theming.
 */
 
 @layer base {
   :root {
-    /* Sophisticated dark theme for institutional investors */
-    --background: 8 8 12; /* Deep navy background */
+    /* Modern hedge fund theme with purple-navy gradients */
+    --background: 16 32 46; /* Deep navy background */
     --foreground: 0 0% 98%;
 
-    --card: 12 12 18;
+    --card: 20 28 40;
     --card-foreground: 0 0% 98%;
 
-    --popover: 12 12 18;
+    --popover: 20 28 40;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 220 70% 50%; /* Professional blue as primary */
+    --primary: 221 83% 53%; /* Electric blue */
     --primary-foreground: 0 0% 100%;
     
-    --accent-gold: 45 100% 65%; /* Sophisticated gold accent */
-    --accent-platinum: 210 15% 70%; /* Platinum silver */
+    --accent-purple: 262 83% 58%; /* Vibrant purple */
+    --accent-cyan: 188 94% 43%; /* Bright cyan */
     --accent-navy: 220 60% 25%; /* Deep navy accent */
-    --accent-blue: 220 70% 50%; /* Professional blue */
+    --accent-blue: 221 83% 53%; /* Electric blue */
+    --accent-success: 142 76% 36%; /* Emerald green */
+    --accent-danger: 0 84% 60%; /* Coral red */
     
-    /* Institutional color palette */
-    --secondary: 216 15% 12%;
+    /* Long & Short color palette */
+    --secondary: 225 25% 15%;
     --secondary-foreground: 0 0% 98%;
     
-    --muted: 216 15% 12%;
-    --muted-foreground: 216 12% 65%;
+    --muted: 225 25% 15%;
+    --muted-foreground: 225 15% 70%;
     
-    --accent: 45 100% 65%; /* Gold as main accent */
-    --accent-foreground: 216 20% 15%;
+    --accent: 262 83% 58%; /* Purple as main accent */
+    --accent-foreground: 225 25% 15%;
     
-    --destructive: 0 62% 50%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 216 15% 20%;
-    --input: 216 15% 20%;
-    --ring: 220 70% 50%;
+    --border: 225 25% 25%;
+    --input: 225 25% 25%;
+    --ring: 221 83% 53%;
     
-    --radius: 0.5rem;
+    --radius: 0.75rem;
     
-    /* Sophisticated gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(8 8 12) 0%, hsl(12 12 18) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(12 12 18) 0%, hsl(16 16 22) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(220 70% 50%) 0%, hsl(45 100% 65%) 100%);
-    --gradient-text: linear-gradient(135deg, hsl(220 70% 50%) 0%, hsl(45 100% 65%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(45 100% 65%) 0%, hsl(45 100% 75%) 100%);
-    --gradient-institutional: linear-gradient(135deg, hsl(220 60% 25%) 0%, hsl(220 70% 50%) 100%);
+    /* Modern gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(262 45% 12%) 0%, hsl(220 38% 18%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(225 25% 15%) 0%, hsl(225 35% 20%) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(188 94% 43%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(221 83% 53%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(225 25% 15% / 0.8) 0%, hsla(225 35% 20% / 0.6) 100%);
     
-    /* Refined shadows */
-    --shadow-glow: 0 8px 32px hsl(220 70% 50% / 0.25);
+    /* Enhanced shadows */
+    --shadow-glow: 0 8px 32px hsl(221 83% 53% / 0.25);
     --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.4);
-    --shadow-lift: 0 8px 25px hsl(0 0% 0% / 0.15);
-    --shadow-gold: 0 4px 20px hsl(45 100% 65% / 0.2);
+    --shadow-lift: 0 12px 30px hsl(0 0% 0% / 0.15);
+    --shadow-purple: 0 4px 20px hsl(262 83% 58% / 0.2);
+    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.12);
     
     /* Premium typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -72,7 +76,6 @@ All colors MUST be HSL for proper theming.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-
 }
 
 @layer base {
