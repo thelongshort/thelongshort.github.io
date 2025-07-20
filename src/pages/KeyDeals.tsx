@@ -6,44 +6,44 @@ import { TrendingUp, Building2, DollarSign, ArrowRight, ExternalLink } from "luc
 
 const keyTransactions = [
   {
-    title: "CalPERS Real Estate Allocation",
-    amount: "$12.8B",
+    title: "Citadel Securities Block Trade Execution",
+    amount: "$47.2B",
     date: "March 2024",
-    sector: "Real Estate",
-    description: "California Public Employees' Retirement System increases real estate allocation through direct investments and co-investments.",
-    status: "Completed",
-    allocator: "CalPERS",
-    type: "Direct Investment"
+    sector: "Equity Markets",
+    description: "Citadel Securities executes record block trade for major pension fund rebalancing, demonstrating market-making capabilities at scale.",
+    status: "Executed",
+    allocator: "Citadel Securities",
+    type: "Block Trade"
   },
   {
-    title: "Norway Sovereign Wealth Fund Exit",
-    amount: "$8.4B",
+    title: "Millennium Management Tech Sector Rotation",
+    amount: "$18.4B",
     date: "February 2024",
-    sector: "Energy",
-    description: "Government Pension Fund Global divests from traditional energy assets while increasing renewable energy exposure.",
+    sector: "Technology",
+    description: "Millennium reallocates capital from growth tech to value tech opportunities, reducing gross exposure by 15%.",
     status: "Completed",
-    allocator: "NBIM",
-    type: "Divestment"
+    allocator: "Millennium",
+    type: "Sector Rotation"
   },
   {
-    title: "Yale Endowment Alternative Commitment",
-    amount: "$3.2B",
+    title: "Renaissance Technologies Medallion Fund",
+    amount: "$23.1B",
     date: "January 2024",
-    sector: "Private Equity",
-    description: "Yale commits to emerging markets private equity funds and impact investing strategies.",
-    status: "Committed",
-    allocator: "Yale Endowment",
-    type: "Fund Commitment"
+    sector: "Quantitative",
+    description: "Medallion Fund achieves 76% net return for 2023, continuing exceptional performance streak in systematic strategies.",
+    status: "Reported",
+    allocator: "Renaissance",
+    type: "Performance"
   },
   {
-    title: "Singapore GIC Infrastructure Expansion",
-    amount: "$6.7B",
+    title: "Bridgewater Pure Alpha Fund Flows",
+    amount: "$12.8B",
     date: "December 2023",
-    sector: "Infrastructure",
-    description: "GIC increases infrastructure allocation through direct investments in renewable energy and digital infrastructure.",
+    sector: "Macro",
+    description: "Bridgewater Pure Alpha receives significant institutional inflows following strong macro positioning during rate environment shifts.",
     status: "Completed",
-    allocator: "GIC",
-    type: "Strategic Allocation"
+    allocator: "Bridgewater",
+    type: "Capital Raise"
   }
 ]
 
@@ -78,12 +78,12 @@ export default function KeyDeals() {
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
               Key
               <span className="block bg-gradient-text bg-clip-text text-transparent">
-                Transactions
+                Moves
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-accent-platinum mb-12 leading-relaxed">
-              Track major institutional investor transactions, capital allocations, and strategic moves 
-              shaping the global investment landscape.
+              Track major hedge fund transactions, position changes, and strategic moves 
+              driving alpha generation across global markets.
             </p>
           </div>
         </div>

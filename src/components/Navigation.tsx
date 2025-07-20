@@ -51,7 +51,7 @@ export function Navigation() {
                   : 'text-muted-foreground hover:text-white hover:bg-white/10'
               }`}
             >
-              Fund Intelligence
+              Events
             </Link>
             <Link 
               to="/key-deals" 

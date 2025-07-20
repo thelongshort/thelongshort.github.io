@@ -2,33 +2,52 @@ import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, MapPin, Users, ArrowRight } from "lucide-react"
+import { Calendar, MapPin, Users, ArrowRight, Trophy, Briefcase } from "lucide-react"
 
 const upcomingEvents = [
   {
-    title: "Global Institutional Allocators Summit",
+    title: "Hedge Fund Strategies Summit",
     date: "March 15-17, 2024",
     location: "New York, NY",
-    attendees: "800+",
-    description: "Premier gathering of institutional investors, pension funds, and endowments discussing asset allocation strategies and market outlook.",
-    type: "Summit"
+    attendees: "1,200+",
+    description: "Premier gathering of hedge fund managers, institutional investors, and capital allocators discussing alpha generation strategies and market outlook.",
+    type: "Summit",
+    category: "Multi-Strategy"
   },
   {
-    title: "Alternative Investment Conference",
+    title: "Alternative Beta Conference",
     date: "April 8, 2024",
     location: "London, UK",
-    attendees: "600+",
-    description: "Deep dive into alternative investment strategies with leading institutional investors and fund managers.",
-    type: "Conference"
+    attendees: "800+",
+    description: "Deep dive into systematic trading strategies, quantitative methods, and risk management with leading hedge fund practitioners.",
+    type: "Conference",
+    category: "Quantitative"
   },
   {
-    title: "Sovereign Wealth Fund Forum",
+    title: "Long/Short Equity Forum",
     date: "April 22, 2024",
-    location: "Singapore",
-    attendees: "300+",
-    description: "Exclusive forum for sovereign wealth funds and large institutional investors to share insights on global capital allocation.",
-    type: "Forum"
+    location: "Hong Kong",
+    attendees: "600+",
+    description: "Exclusive forum for equity hedge fund managers to share insights on position sizing, risk management, and alpha identification.",
+    type: "Forum",
+    category: "Equity"
+  },
+  {
+    title: "Credit & Distressed Investing Symposium",
+    date: "May 12, 2024",
+    location: "Chicago, IL",
+    attendees: "450+",
+    description: "Focused event on credit hedge fund strategies, distressed investing opportunities, and structured credit market dynamics.",
+    type: "Symposium",
+    category: "Credit"
   }
+]
+
+const eventCategories = [
+  { name: "Multi-Strategy Events", count: "12", color: "accent-gold", icon: Trophy },
+  { name: "Quant Forums", count: "8", color: "accent-blue", icon: Briefcase },
+  { name: "Equity Conferences", count: "15", color: "accent-platinum", icon: Calendar },
+  { name: "Credit Symposiums", count: "6", color: "accent-navy", icon: Users }
 ]
 
 export default function Events() {
@@ -60,14 +79,14 @@ export default function Events() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
-              Institutional
+              Hedge Fund
               <span className="block bg-gradient-text bg-clip-text text-transparent">
                 Events
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-accent-platinum mb-12 leading-relaxed">
-              Connect with the global institutional investment community through premier 
-              conferences, forums, and exclusive networking opportunities.
+              Connect with leading hedge fund managers and institutional investors through premier 
+              conferences, strategy forums, and exclusive networking opportunities.
             </p>
           </div>
         </div>
@@ -81,23 +100,26 @@ export default function Events() {
               Upcoming Events
             </h2>
             <p className="text-xl text-accent-platinum">
-              Premier gatherings for institutional investment professionals
+              Premier gatherings for hedge fund professionals and institutional investors
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {upcomingEvents.map((event, index) => (
               <Card 
                 key={index}
                 className="group hover:shadow-gold transition-all duration-300 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-accent-gold/20 overflow-hidden"
               >
                 <CardHeader className="relative">
-                  <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-accent-gold/10 text-accent-gold rounded-full text-xs font-medium">
+                  <div className="absolute top-4 right-4 space-y-2">
+                    <span className="block px-3 py-1 bg-accent-gold/10 text-accent-gold rounded-full text-xs font-medium">
                       {event.type}
                     </span>
+                    <span className="block px-3 py-1 bg-accent-blue/10 text-accent-blue rounded-full text-xs font-medium">
+                      {event.category}
+                    </span>
                   </div>
-                  <CardTitle className="text-xl font-bold text-white pr-20">
+                  <CardTitle className="text-xl font-bold text-white pr-24 leading-tight">
                     {event.title}
                   </CardTitle>
                 </CardHeader>
@@ -122,7 +144,7 @@ export default function Events() {
                   </div>
                   
                   <Button className="w-full mt-6 bg-gradient-button hover:shadow-gold text-accent-foreground transition-all duration-300 group-hover:scale-105">
-                    Learn More
+                    Register Now
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </CardContent>
@@ -139,27 +161,68 @@ export default function Events() {
             <h2 className="text-4xl font-display font-bold text-white mb-6">
               Event Categories
             </h2>
+            <p className="text-xl text-accent-platinum">
+              Specialized events by hedge fund strategy and focus area
+            </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { name: "Global Summits", count: "8", color: "accent-gold" },
-              { name: "Regional Forums", count: "12", color: "accent-blue" },
-              { name: "Sector Focus", count: "6", color: "accent-platinum" },
-              { name: "Masterclasses", count: "15", color: "accent-navy" }
-            ].map((category, index) => (
-              <div 
-                key={category.name}
-                className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20 hover:shadow-gold transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className={`text-4xl font-bold text-${category.color} mb-2`}>
-                  {category.count}
+            {eventCategories.map((category, index) => {
+              const IconComponent = category.icon;
+              return (
+                <div 
+                  key={category.name}
+                  className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20 hover:shadow-gold transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex justify-center mb-4">
+                    <IconComponent className={`w-8 h-8 text-${category.color}`} />
+                  </div>
+                  <div className={`text-4xl font-bold text-${category.color} mb-2`}>
+                    {category.count}
+                  </div>
+                  <div className="text-accent-platinum font-medium">
+                    {category.name}
+                  </div>
                 </div>
-                <div className="text-accent-platinum font-medium">
-                  {category.name}
-                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Networking Benefits */}
+      <section className="py-20 bg-background">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-display font-bold text-white mb-6">
+              Why Attend Our Events
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20">
+              <div className="w-16 h-16 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-accent-gold" />
               </div>
-            ))}
+              <h3 className="text-xl font-bold text-white mb-4">Elite Network Access</h3>
+              <p className="text-accent-platinum">Connect with top-tier hedge fund managers, institutional investors, and industry thought leaders.</p>
+            </div>
+            
+            <div className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20">
+              <div className="w-16 h-16 bg-accent-blue/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                <Trophy className="w-8 h-8 text-accent-blue" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Strategy Insights</h3>
+              <p className="text-accent-platinum">Gain exclusive insights into successful hedge fund strategies and market positioning techniques.</p>
+            </div>
+            
+            <div className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20">
+              <div className="w-16 h-16 bg-accent-platinum/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                <Briefcase className="w-8 h-8 text-accent-platinum" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Deal Flow Opportunities</h3>
+              <p className="text-accent-platinum">Discover investment opportunities and potential partnerships through curated networking sessions.</p>
+            </div>
           </div>
         </div>
       </section>
