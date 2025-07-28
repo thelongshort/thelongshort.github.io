@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Switch } from '@/components/ui/switch'
-import { CalendarIcon, Users, TrendingUp, FileText, Calendar, Settings, Plus, Edit, Trash2, Eye, BarChart3 } from 'lucide-react'
+import { CalendarIcon, Users, TrendingUp, FileText, Calendar, Settings, Plus, Edit, Trash2, Eye, BarChart3, LogOut, Lock } from 'lucide-react'
 import { toast } from '@/hooks/use-toast'
 
 interface Article {
@@ -21,6 +21,7 @@ interface Article {
   featured: boolean
   createdAt: string
   views: number
+  content: string
 }
 
 interface Event {
@@ -33,6 +34,19 @@ interface Event {
   registered: number
   status: 'published' | 'draft'
   featured: boolean
+  description: string
+}
+
+interface KeyMove {
+  id: number
+  fundName: string
+  moveType: 'investment' | 'divestment' | 'acquisition' | 'ipo' | 'merger'
+  targetCompany: string
+  amount: string
+  date: string
+  status: 'published' | 'draft'
+  featured: boolean
+  description: string
 }
 
 interface CarouselMetric {
@@ -45,16 +59,26 @@ interface CarouselMetric {
 }
 
 export default function Admin() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   const [articles, setArticles] = useState<Article[]>([
-    { id: 1, title: "Private Equity Market Outlook 2024", category: "Market Trends", author: "Sarah Chen", status: "published", featured: true, createdAt: "2024-01-15", views: 1250 },
-    { id: 2, title: "ESG Integration in PE Investments", category: "Key Deals", author: "Michael Rodriguez", status: "published", featured: false, createdAt: "2024-01-12", views: 890 },
-    { id: 3, title: "Tech Sector M&A Analysis", category: "Analysis", author: "David Kim", status: "draft", featured: false, createdAt: "2024-01-10", views: 0 }
+    { id: 1, title: "Citadel's AI-Driven Trading Strategy", category: "Strategy Analysis", author: "Sarah Chen", status: "published", featured: true, createdAt: "2024-01-15", views: 1250, content: "Deep dive into Citadel's latest algorithmic trading approaches..." },
+    { id: 2, title: "Renaissance Technologies' New Hiring Spree", category: "Market Intelligence", author: "Michael Rodriguez", status: "published", featured: false, createdAt: "2024-01-12", views: 890, content: "Analysis of Renaissance's expansion in quantitative research..." },
+    { id: 3, title: "Bridgewater's ESG Integration", category: "Strategy Analysis", author: "David Kim", status: "draft", featured: false, createdAt: "2024-01-10", views: 0, content: "How Bridgewater is incorporating ESG factors..." }
   ])
 
   const [events, setEvents] = useState<Event[]>([
-    { id: 1, title: "PE Summit 2024", type: "Conference", date: "2024-03-15", location: "New York", capacity: 500, registered: 347, status: "published", featured: true },
-    { id: 2, title: "Deal Sourcing Masterclass", type: "Workshop", date: "2024-02-20", location: "Virtual", capacity: 100, registered: 78, status: "published", featured: false },
-    { id: 3, title: "ESG Investment Forum", type: "Panel", date: "2024-04-05", location: "London", capacity: 200, registered: 0, status: "draft", featured: false }
+    { id: 1, title: "Hedge Fund Alpha Summit 2024", type: "Conference", date: "2024-03-15", location: "New York", capacity: 500, registered: 347, status: "published", featured: true, description: "Annual gathering of top hedge fund managers to discuss market strategies and alpha generation techniques." },
+    { id: 2, title: "Quant Trading Masterclass", type: "Workshop", date: "2024-02-20", location: "Virtual", capacity: 100, registered: 78, status: "published", featured: false, description: "Intensive workshop on quantitative trading strategies and risk management." },
+    { id: 3, title: "Alternative Investment Forum", type: "Panel", date: "2024-04-05", location: "London", capacity: 200, registered: 0, status: "draft", featured: false, description: "Panel discussion on emerging alternative investment opportunities." }
+  ])
+
+  const [keyMoves, setKeyMoves] = useState<KeyMove[]>([
+    { id: 1, fundName: "Pershing Square", moveType: "investment", targetCompany: "Netflix", amount: "$1.1B", date: "2024-01-20", status: "published", featured: true, description: "Bill Ackman's fund increases Netflix position by 15%" },
+    { id: 2, fundName: "Third Point", moveType: "divestment", targetCompany: "Disney", amount: "$800M", date: "2024-01-18", status: "published", featured: false, description: "Dan Loeb exits Disney position citing valuation concerns" },
+    { id: 3, fundName: "Elliot Management", moveType: "acquisition", targetCompany: "Crown Castle", amount: "$15B", date: "2024-01-15", status: "draft", featured: false, description: "Potential takeover bid for telecom infrastructure company" }
   ])
 
   const [carouselMetrics, setCarouselMetrics] = useState<CarouselMetric[]>([
@@ -71,10 +95,28 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState("overview")
   const [showArticleForm, setShowArticleForm] = useState(false)
   const [showEventForm, setShowEventForm] = useState(false)
+  const [showKeyMoveForm, setShowKeyMoveForm] = useState(false)
   const [showCarouselForm, setShowCarouselForm] = useState(false)
   const [editingArticle, setEditingArticle] = useState<Article | null>(null)
   const [editingEvent, setEditingEvent] = useState<Event | null>(null)
+  const [editingKeyMove, setEditingKeyMove] = useState<KeyMove | null>(null)
   const [editingMetric, setEditingMetric] = useState<CarouselMetric | null>(null)
+
+  const handleLogin = () => {
+    if (username === 'admin' && password === 'admin123') {
+      setIsAuthenticated(true)
+      toast({ title: "Login successful", description: "Welcome to the admin dashboard" })
+    } else {
+      toast({ title: "Login failed", description: "Invalid username or password", variant: "destructive" })
+    }
+  }
+
+  const handleLogout = () => {
+    setIsAuthenticated(false)
+    setUsername('')
+    setPassword('')
+    toast({ title: "Logged out successfully" })
+  }
 
   const handleCreateArticle = (data: any) => {
     const newArticle: Article = {
@@ -84,6 +126,7 @@ export default function Admin() {
       author: data.author,
       status: data.status,
       featured: data.featured,
+      content: data.content,
       createdAt: new Date().toISOString().split('T')[0],
       views: 0
     }
@@ -99,14 +142,32 @@ export default function Admin() {
       type: data.type,
       date: data.date,
       location: data.location,
-      capacity: data.capacity,
+      capacity: parseInt(data.capacity),
       registered: 0,
       status: data.status,
-      featured: data.featured
+      featured: data.featured,
+      description: data.description
     }
     setEvents([...events, newEvent])
     setShowEventForm(false)
     toast({ title: "Event created successfully" })
+  }
+
+  const handleCreateKeyMove = (data: any) => {
+    const newKeyMove: KeyMove = {
+      id: keyMoves.length + 1,
+      fundName: data.fundName,
+      moveType: data.moveType,
+      targetCompany: data.targetCompany,
+      amount: data.amount,
+      date: data.date,
+      status: data.status,
+      featured: data.featured,
+      description: data.description
+    }
+    setKeyMoves([...keyMoves, newKeyMove])
+    setShowKeyMoveForm(false)
+    toast({ title: "Key move created successfully" })
   }
 
   const toggleArticleFeatured = (id: number) => {
@@ -129,6 +190,17 @@ export default function Admin() {
   const deleteEvent = (id: number) => {
     setEvents(events.filter(event => event.id !== id))
     toast({ title: "Event deleted successfully" })
+  }
+
+  const toggleKeyMoveFeatured = (id: number) => {
+    setKeyMoves(keyMoves.map(move => 
+      move.id === id ? { ...move, featured: !move.featured } : move
+    ))
+  }
+
+  const deleteKeyMove = (id: number) => {
+    setKeyMoves(keyMoves.filter(move => move.id !== id))
+    toast({ title: "Key move deleted successfully" })
   }
 
   const handleCreateMetric = (data: any) => {
@@ -156,6 +228,49 @@ export default function Admin() {
     toast({ title: "Metric deleted successfully" })
   }
 
+  // Login form if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-primary-dark via-secondary-dark to-background flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <div className="flex items-center justify-center mb-4">
+              <Lock className="w-8 h-8 text-primary" />
+            </div>
+            <CardTitle className="text-2xl">Long & Short Admin</CardTitle>
+            <CardDescription>Sign in to access the admin dashboard</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter username"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+              />
+            </div>
+            <Button onClick={handleLogin} className="w-full">
+              Sign In
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -163,8 +278,8 @@ export default function Admin() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-              <p className="text-muted-foreground mt-1">Manage your platform content and events</p>
+              <h1 className="text-3xl font-bold">Long & Short Admin</h1>
+              <p className="text-muted-foreground mt-1">Manage hedge fund intelligence platform</p>
             </div>
             <div className="flex gap-3">
               <Button onClick={() => setShowArticleForm(true)}>
@@ -175,6 +290,14 @@ export default function Admin() {
                 <Plus className="w-4 h-4 mr-2" />
                 New Event
               </Button>
+              <Button onClick={() => setShowKeyMoveForm(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                New Key Move
+              </Button>
+              <Button variant="outline" onClick={handleLogout}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
             </div>
           </div>
         </div>
@@ -182,22 +305,26 @@ export default function Admin() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="overview" className="flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
               Overview
             </TabsTrigger>
             <TabsTrigger value="content" className="flex items-center gap-2">
               <FileText className="w-4 h-4" />
-              Content
+              Articles
             </TabsTrigger>
             <TabsTrigger value="events" className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               Events
             </TabsTrigger>
+            <TabsTrigger value="keymoves" className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" />
+              Key Moves
+            </TabsTrigger>
             <TabsTrigger value="carousel" className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4" />
-              Carousel
+              Metrics
             </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center gap-2">
               <Settings className="w-4 h-4" />
@@ -422,6 +549,66 @@ export default function Admin() {
             )}
           </TabsContent>
 
+          {/* Key Moves Management Tab */}
+          <TabsContent value="keymoves" className="space-y-6">
+            {!showKeyMoveForm ? (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Key Moves Management</CardTitle>
+                  <CardDescription>Track major hedge fund transactions and strategic moves</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Fund Name</TableHead>
+                        <TableHead>Move Type</TableHead>
+                        <TableHead>Target Company</TableHead>
+                        <TableHead>Amount</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Featured</TableHead>
+                        <TableHead>Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {keyMoves.map(move => (
+                        <TableRow key={move.id}>
+                          <TableCell className="font-medium">{move.fundName}</TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="capitalize">
+                              {move.moveType}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>{move.targetCompany}</TableCell>
+                          <TableCell className="font-bold">{move.amount}</TableCell>
+                          <TableCell>{move.date}</TableCell>
+                          <TableCell>
+                            <Switch 
+                              checked={move.featured} 
+                              onCheckedChange={() => toggleKeyMoveFeatured(move.id)}
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex gap-2">
+                              <Button variant="ghost" size="sm">
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm" onClick={() => deleteKeyMove(move.id)}>
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            ) : (
+              <KeyMoveForm onSubmit={handleCreateKeyMove} onCancel={() => setShowKeyMoveForm(false)} />
+            )}
+          </TabsContent>
+
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-6">
             <Card>
@@ -431,23 +618,23 @@ export default function Admin() {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="siteName">Site Name</Label>
-                    <Input id="siteName" defaultValue="Carry & Conquer" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="adminEmail">Admin Email</Label>
-                    <Input id="adminEmail" type="email" defaultValue="admin@carryconquer.com" />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="siteDescription">Site Description</Label>
-                  <Textarea 
-                    id="siteDescription" 
-                    defaultValue="The premier private equity intelligence platform providing deep insights on transactions, market trends, and firm strategies."
-                  />
-                </div>
+                   <div className="space-y-2">
+                     <Label htmlFor="siteName">Site Name</Label>
+                     <Input id="siteName" defaultValue="Long & Short" />
+                   </div>
+                   <div className="space-y-2">
+                     <Label htmlFor="adminEmail">Admin Email</Label>
+                     <Input id="adminEmail" type="email" defaultValue="admin@longshort.com" />
+                   </div>
+                 </div>
+                 
+                 <div className="space-y-2">
+                   <Label htmlFor="siteDescription">Site Description</Label>
+                   <Textarea 
+                     id="siteDescription" 
+                     defaultValue="Hedge fund intelligence platform providing deep insights on fund strategies, market movements, and key transactions."
+                   />
+                 </div>
 
                 <Button>Save Settings</Button>
               </CardContent>
@@ -643,12 +830,12 @@ function ArticleForm({ onSubmit, onCancel }: { onSubmit: (data: any) => void, on
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Market Trends">Market Trends</SelectItem>
-                  <SelectItem value="Key Deals">Key Deals</SelectItem>
-                  <SelectItem value="Analysis">Analysis</SelectItem>
-                  <SelectItem value="Industry Insights">Industry Insights</SelectItem>
-                </SelectContent>
+                 <SelectContent>
+                   <SelectItem value="Strategy Analysis">Strategy Analysis</SelectItem>
+                   <SelectItem value="Market Intelligence">Market Intelligence</SelectItem>
+                   <SelectItem value="Fund Performance">Fund Performance</SelectItem>
+                   <SelectItem value="Industry Insights">Industry Insights</SelectItem>
+                 </SelectContent>
               </Select>
             </div>
           </div>
@@ -877,6 +1064,140 @@ function EventForm({ onSubmit, onCancel }: { onSubmit: (data: any) => void, onCa
               </Button>
               <Button type="submit">
                 Create Event
+              </Button>
+            </div>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  )
+}
+
+// Key Move Form Component
+function KeyMoveForm({ onSubmit, onCancel }: { onSubmit: (data: any) => void, onCancel: () => void }) {
+  const [formData, setFormData] = useState({
+    fundName: '',
+    moveType: 'investment',
+    targetCompany: '',
+    amount: '',
+    date: '',
+    description: '',
+    status: 'draft',
+    featured: false
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSubmit(formData)
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Create New Key Move</CardTitle>
+        <CardDescription>Track major hedge fund transactions and strategic moves</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="fundName">Fund Name *</Label>
+              <Input 
+                id="fundName" 
+                value={formData.fundName}
+                onChange={(e) => setFormData({...formData, fundName: e.target.value})}
+                placeholder="e.g., Pershing Square"
+                required 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="moveType">Move Type *</Label>
+              <Select value={formData.moveType} onValueChange={(value) => setFormData({...formData, moveType: value})}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select move type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="investment">Investment</SelectItem>
+                  <SelectItem value="divestment">Divestment</SelectItem>
+                  <SelectItem value="acquisition">Acquisition</SelectItem>
+                  <SelectItem value="ipo">IPO</SelectItem>
+                  <SelectItem value="merger">Merger</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="targetCompany">Target Company *</Label>
+              <Input 
+                id="targetCompany" 
+                value={formData.targetCompany}
+                onChange={(e) => setFormData({...formData, targetCompany: e.target.value})}
+                placeholder="e.g., Netflix"
+                required 
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="amount">Amount</Label>
+              <Input 
+                id="amount" 
+                value={formData.amount}
+                onChange={(e) => setFormData({...formData, amount: e.target.value})}
+                placeholder="e.g., $1.1B"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="date">Date *</Label>
+              <Input 
+                id="date" 
+                type="date"
+                value={formData.date}
+                onChange={(e) => setFormData({...formData, date: e.target.value})}
+                required 
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea 
+              id="description" 
+              value={formData.description}
+              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              placeholder="Describe the key move, strategy, or market impact..."
+              className="min-h-[120px]"
+            />
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <Switch 
+                  id="featured"
+                  checked={formData.featured}
+                  onCheckedChange={(checked) => setFormData({...formData, featured: checked})}
+                />
+                <Label htmlFor="featured">Featured Key Move</Label>
+              </div>
+              
+              <Select value={formData.status} onValueChange={(value) => setFormData({...formData, status: value})}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="draft">Draft</SelectItem>
+                  <SelectItem value="published">Published</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex gap-3">
+              <Button type="button" variant="outline" onClick={onCancel}>
+                Cancel
+              </Button>
+              <Button type="submit">
+                Create Key Move
               </Button>
             </div>
           </div>
