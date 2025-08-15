@@ -91,7 +91,7 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
-export const Analysis = () => {
+const Analysis = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -212,3 +212,5 @@ export const Analysis = () => {
     </div>
   );
 };
+
+export default Analysis;
