@@ -63,6 +63,16 @@ export function Navigation() {
             >
               Key Moves
             </Link>
+            <Link 
+              to="/snapshot" 
+              className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+                isActive('/snapshot') 
+                  ? 'bg-gradient-accent text-white shadow-glow' 
+                  : 'text-muted-foreground hover:text-white hover:bg-white/10'
+              }`}
+            >
+              Snapshot
+            </Link>
           </div>
           
           {/* CTA Button */}
