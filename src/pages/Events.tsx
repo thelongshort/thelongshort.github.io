@@ -2,46 +2,30 @@ import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, MapPin, Users, ArrowRight, Trophy, Briefcase } from "lucide-react"
+import { Calendar, MapPin, Users, ArrowRight, Trophy, Briefcase, Loader2 } from "lucide-react"
+import { useEffect, useState } from "react"
+import { supabase } from "@/integrations/supabase/client"
+import { format } from "date-fns"
 
-const upcomingEvents = [
-  {
-    title: "Hedge Fund Strategies Summit",
-    date: "March 15-17, 2024",
-    location: "New York, NY",
-    attendees: "1,200+",
-    description: "Premier gathering of hedge fund managers, institutional investors, and capital allocators discussing alpha generation strategies and market outlook.",
-    type: "Summit",
-    category: "Multi-Strategy"
-  },
-  {
-    title: "Alternative Beta Conference",
-    date: "April 8, 2024",
-    location: "London, UK",
-    attendees: "800+",
-    description: "Deep dive into systematic trading strategies, quantitative methods, and risk management with leading hedge fund practitioners.",
-    type: "Conference",
-    category: "Quantitative"
-  },
-  {
-    title: "Long/Short Equity Forum",
-    date: "April 22, 2024",
-    location: "Hong Kong",
-    attendees: "600+",
-    description: "Exclusive forum for equity hedge fund managers to share insights on position sizing, risk management, and alpha identification.",
-    type: "Forum",
-    category: "Equity"
-  },
-  {
-    title: "Credit & Distressed Investing Symposium",
-    date: "May 12, 2024",
-    location: "Chicago, IL",
-    attendees: "450+",
-    description: "Focused event on credit hedge fund strategies, distressed investing opportunities, and structured credit market dynamics.",
-    type: "Symposium",
-    category: "Credit"
-  }
-]
+interface Event {
+  id: string
+  title: string
+  description: string | null
+  event_type: string
+  start_date: string
+  end_date: string | null
+  location: string | null
+  venue: string | null
+  image_url: string | null
+  registration_url: string | null
+  price: number | null
+  capacity: number | null
+  organizer: string | null
+  featured: boolean
+  published: boolean
+  created_at: string
+  updated_at: string
+}
 
 const eventCategories = [
   { name: "Multi-Strategy Events", count: "12", color: "accent-gold", icon: Trophy },
@@ -51,6 +35,44 @@ const eventCategories = [
 ]
 
 export default function Events() {
+  const [events, setEvents] = useState<Event[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        const { data, error } = await supabase
+          .from('events')
+          .select('*')
+          .eq('published', true)
+          .gte('start_date', new Date().toISOString())
+          .order('start_date', { ascending: true })
+
+        if (error) throw error
+        setEvents(data || [])
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch events')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchEvents()
+  }, [])
+
+  const formatEventDate = (startDate: string, endDate: string | null) => {
+    const start = new Date(startDate)
+    if (endDate) {
+      const end = new Date(endDate)
+      if (start.toDateString() === end.toDateString()) {
+        return format(start, 'MMMM d, yyyy')
+      } else {
+        return `${format(start, 'MMMM d')}-${format(end, 'd, yyyy')}`
+      }
+    }
+    return format(start, 'MMMM d, yyyy')
+  }
   return (
     <div className="min-h-screen font-primary bg-background">
       <Navigation />
@@ -104,53 +126,85 @@ export default function Events() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {upcomingEvents.map((event, index) => (
-              <Card 
-                key={index}
-                className="group hover:shadow-gold transition-all duration-300 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-accent-gold/20 overflow-hidden"
-              >
-                <CardHeader className="relative">
-                  <div className="absolute top-4 right-4 space-y-2">
-                    <span className="block px-3 py-1 bg-accent-gold/10 text-accent-gold rounded-full text-xs font-medium">
-                      {event.type}
-                    </span>
-                    <span className="block px-3 py-1 bg-accent-blue/10 text-accent-blue rounded-full text-xs font-medium">
-                      {event.category}
-                    </span>
-                  </div>
-                  <CardTitle className="text-xl font-bold text-white pr-24 leading-tight">
-                    {event.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-accent-platinum leading-relaxed">
-                    {event.description}
-                  </CardDescription>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center text-sm text-accent-platinum">
-                      <Calendar className="w-4 h-4 mr-2 text-accent-gold" />
-                      {event.date}
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="w-8 h-8 animate-spin text-accent-gold" />
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <p className="text-red-400 text-lg">Error loading events: {error}</p>
+            </div>
+          ) : events.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-accent-platinum text-lg">No upcoming events found.</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-8">
+              {events.map((event) => (
+                <Card 
+                  key={event.id}
+                  className="group hover:shadow-gold transition-all duration-300 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-accent-gold/20 overflow-hidden"
+                >
+                  <CardHeader className="relative">
+                    <div className="absolute top-4 right-4 space-y-2">
+                      <span className="block px-3 py-1 bg-accent-gold/10 text-accent-gold rounded-full text-xs font-medium">
+                        {event.event_type}
+                      </span>
+                      {event.featured && (
+                        <span className="block px-3 py-1 bg-accent-blue/10 text-accent-blue rounded-full text-xs font-medium">
+                          Featured
+                        </span>
+                      )}
                     </div>
-                    <div className="flex items-center text-sm text-accent-platinum">
-                      <MapPin className="w-4 h-4 mr-2 text-accent-blue" />
-                      {event.location}
+                    <CardTitle className="text-xl font-bold text-white pr-24 leading-tight">
+                      {event.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {event.description && (
+                      <CardDescription className="text-accent-platinum leading-relaxed">
+                        {event.description}
+                      </CardDescription>
+                    )}
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center text-sm text-accent-platinum">
+                        <Calendar className="w-4 h-4 mr-2 text-accent-gold" />
+                        {formatEventDate(event.start_date, event.end_date)}
+                      </div>
+                      {event.location && (
+                        <div className="flex items-center text-sm text-accent-platinum">
+                          <MapPin className="w-4 h-4 mr-2 text-accent-blue" />
+                          {event.location}
+                        </div>
+                      )}
+                      {event.capacity && (
+                        <div className="flex items-center text-sm text-accent-platinum">
+                          <Users className="w-4 h-4 mr-2 text-accent-navy" />
+                          Up to {event.capacity} attendees
+                        </div>
+                      )}
+                      {event.organizer && (
+                        <div className="flex items-center text-sm text-accent-platinum">
+                          <Briefcase className="w-4 h-4 mr-2 text-accent-platinum" />
+                          Organized by {event.organizer}
+                        </div>
+                      )}
                     </div>
-                    <div className="flex items-center text-sm text-accent-platinum">
-                      <Users className="w-4 h-4 mr-2 text-accent-navy" />
-                      {event.attendees} expected attendees
-                    </div>
-                  </div>
-                  
-                  <Button className="w-full mt-6 bg-gradient-button hover:shadow-gold text-accent-foreground transition-all duration-300 group-hover:scale-105">
-                    Register Now
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                    
+                    <Button 
+                      className="w-full mt-6 bg-gradient-button hover:shadow-gold text-accent-foreground transition-all duration-300 group-hover:scale-105"
+                      onClick={() => event.registration_url && window.open(event.registration_url, '_blank')}
+                      disabled={!event.registration_url}
+                    >
+                      {event.registration_url ? 'Register Now' : 'Registration Coming Soon'}
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
