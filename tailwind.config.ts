@@ -64,31 +64,40 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				'accent-purple': 'hsl(var(--accent-purple))',
+				'accent-pink': 'hsl(var(--accent-pink))',
 				'accent-cyan': 'hsl(var(--accent-cyan))',
 				'accent-navy': 'hsl(var(--accent-navy))',
 				'accent-blue': 'hsl(var(--accent-blue))',
 				'accent-success': 'hsl(var(--accent-success))',
 				'accent-danger': 'hsl(var(--accent-danger))',
-				'accent-lime': 'hsl(var(--accent-lime))'
+				'accent-gold': 'hsl(var(--accent-gold))',
+				'glass': {
+					'primary': 'hsl(var(--glass-primary))',
+					'secondary': 'hsl(var(--glass-secondary))',
+					'accent': 'hsl(var(--glass-accent))'
+				}
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-card': 'var(--gradient-card)',
+				'gradient-glass': 'var(--gradient-glass)',
 				'gradient-button': 'var(--gradient-button)',
 				'gradient-text': 'var(--gradient-text)',
 				'gradient-accent': 'var(--gradient-accent)',
-				'gradient-glass': 'var(--gradient-glass)',
+				'gradient-mesh': 'var(--gradient-mesh)',
 				'gradient-glow': 'var(--gradient-glow)',
-				'gradient-purple-glow': 'var(--gradient-purple-glow)'
+				'gradient-purple-glow': 'var(--gradient-purple-glow)',
+				'gradient-pink-glow': 'var(--gradient-pink-glow)'
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
 				'card': 'var(--shadow-card)',
+				'glass': 'var(--shadow-glass)',
 				'lift': 'var(--shadow-lift)',
 				'purple': 'var(--shadow-purple)',
-				'glass': 'var(--shadow-glass)',
-				'lime': 'var(--shadow-lime)',
-				'neon': 'var(--shadow-neon)'
+				'pink': 'var(--shadow-pink)',
+				'neon': 'var(--shadow-neon)',
+				'inner-glow': 'var(--shadow-inner-glow)'
 			},
 			fontFamily: {
 				'primary': 'var(--font-primary)',

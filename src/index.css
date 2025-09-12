@@ -9,64 +9,72 @@ All colors MUST be HSL for proper theming.
 
 @layer base {
   :root {
-    /* Modern ultra-sleek theme with lime accent */
-    --background: 8 8% 6%; /* Ultra dark background */
+    /* Ultra-futuristic glassmorphism theme */
+    --background: 240 12% 3%; /* Deep space background */
     --foreground: 0 0% 98%;
 
-    --card: 240 6% 8%; /* Darker cards with subtle blue tint */
+    --card: 240 15% 8% / 0.4; /* Glass cards with transparency */
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 6% 8%;
+    --popover: 240 15% 8% / 0.95;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 72 100% 80%; /* Bright lime green #CCFF00 */
+    --primary: 84 100% 59%; /* GreenYellow #ADFF2F */
     --primary-foreground: 0 0% 0%;
     
-    --accent-purple: 280 100% 70%; /* Vibrant purple */
+    --accent-purple: 270 100% 70%; /* Vibrant purple */
+    --accent-pink: 320 100% 70%; /* Hot pink */
     --accent-cyan: 188 94% 43%; /* Bright cyan */
-    --accent-navy: 240 20% 15%; /* Deep navy accent */
+    --accent-navy: 240 25% 12%; /* Deep navy accent */
     --accent-blue: 221 83% 53%; /* Electric blue */
-    --accent-success: 142 76% 36%; /* Emerald green */
+    --accent-success: 84 100% 59%; /* GreenYellow success */
     --accent-danger: 0 84% 60%; /* Coral red */
-    --accent-lime: 72 100% 80%; /* Main lime accent */
+    --accent-gold: 45 100% 60%; /* Gold accent */
     
-    /* Ultra modern color palette */
-    --secondary: 240 6% 12%;
-    --secondary-foreground: 0 0% 98%;
+    /* Glass morphism palette */
+    --glass-primary: 240 15% 8% / 0.3;
+    --glass-secondary: 240 20% 12% / 0.4;
+    --glass-accent: 84 100% 59% / 0.1;
     
-    --muted: 240 6% 12%;
-    --muted-foreground: 240 5% 65%;
+    --secondary: 240 15% 8%;
+    --secondary-foreground: 0 0% 92%;
     
-    --accent: 72 100% 80%; /* Lime as main accent */
+    --muted: 240 15% 8% / 0.6;
+    --muted-foreground: 240 5% 70%;
+    
+    --accent: 84 100% 59%; /* GreenYellow as main accent */
     --accent-foreground: 0 0% 0%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 240 6% 15%;
-    --input: 240 6% 12%;
-    --ring: 72 100% 80%;
+    --border: 240 15% 15% / 0.3;
+    --input: 240 15% 8% / 0.6;
+    --ring: 84 100% 59%;
     
     --radius: 0.75rem;
     
-    /* Ultra-modern gradients with lime accent */
-    --gradient-hero: linear-gradient(135deg, hsl(240 8% 4%) 0%, hsl(240 12% 8%) 50%, hsl(72 100% 80% / 0.05) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(240 6% 8% / 0.9) 0%, hsl(240 8% 12% / 0.8) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(72 100% 80%) 0%, hsl(72 90% 75%) 100%);
-    --gradient-text: linear-gradient(135deg, hsl(72 100% 80%) 0%, hsl(280 100% 70%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(72 100% 80%) 0%, hsl(188 94% 43%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsla(240 6% 8% / 0.4) 0%, hsla(240 8% 12% / 0.2) 100%);
-    --gradient-glow: radial-gradient(circle at center, hsl(72 100% 80% / 0.15) 0%, transparent 70%);
-    --gradient-purple-glow: radial-gradient(circle at center, hsl(280 100% 70% / 0.1) 0%, transparent 70%);
+    /* Futuristic glassmorphism gradients */
+    --gradient-hero: radial-gradient(ellipse at top, hsl(240 12% 3%) 0%, hsl(240 15% 8%) 40%, hsl(84 100% 59% / 0.03) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(240 15% 8% / 0.4) 0%, hsl(240 20% 12% / 0.6) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(240 15% 8% / 0.3) 0%, hsl(240 20% 12% / 0.1) 100%);
+    --gradient-button: linear-gradient(135deg, hsl(84 100% 59%) 0%, hsl(84 90% 50%) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(84 100% 59%) 0%, hsl(270 100% 70%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(84 100% 59%) 0%, hsl(320 100% 70%) 100%);
+    --gradient-mesh: conic-gradient(from 0deg at 50% 50%, hsl(84 100% 59% / 0.1) 0deg, hsl(270 100% 70% / 0.1) 120deg, hsl(320 100% 70% / 0.1) 240deg, hsl(84 100% 59% / 0.1) 360deg);
+    --gradient-glow: radial-gradient(circle at center, hsl(84 100% 59% / 0.2) 0%, transparent 70%);
+    --gradient-purple-glow: radial-gradient(circle at center, hsl(270 100% 70% / 0.15) 0%, transparent 70%);
+    --gradient-pink-glow: radial-gradient(circle at center, hsl(320 100% 70% / 0.15) 0%, transparent 70%);
     
-    /* Ultra-modern shadows with lime glow */
-    --shadow-glow: 0 8px 32px hsl(72 100% 80% / 0.3);
-    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.6), 0 2px 8px hsl(72 100% 80% / 0.1);
-    --shadow-lift: 0 20px 60px hsl(0 0% 0% / 0.3), 0 8px 24px hsl(72 100% 80% / 0.15);
-    --shadow-purple: 0 8px 32px hsl(280 100% 70% / 0.2);
-    --shadow-glass: 0 16px 64px hsl(0 0% 0% / 0.2), inset 0 1px 0 hsl(0 0% 100% / 0.1);
-    --shadow-lime: 0 4px 20px hsl(72 100% 80% / 0.25);
-    --shadow-neon: 0 0 20px hsl(72 100% 80% / 0.5), 0 0 40px hsl(72 100% 80% / 0.3), 0 0 60px hsl(72 100% 80% / 0.1);
+    /* Advanced glassmorphism shadows */
+    --shadow-glow: 0 8px 32px hsl(84 100% 59% / 0.4);
+    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.7), 0 2px 8px hsl(84 100% 59% / 0.15);
+    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.4), inset 0 1px 0 hsl(0 0% 100% / 0.1), inset 0 -1px 0 hsl(0 0% 0% / 0.1);
+    --shadow-lift: 0 20px 60px hsl(0 0% 0% / 0.4), 0 8px 24px hsl(84 100% 59% / 0.2);
+    --shadow-purple: 0 8px 32px hsl(270 100% 70% / 0.3);
+    --shadow-pink: 0 8px 32px hsl(320 100% 70% / 0.3);
+    --shadow-neon: 0 0 20px hsl(84 100% 59% / 0.6), 0 0 40px hsl(84 100% 59% / 0.4), 0 0 60px hsl(84 100% 59% / 0.2);
+    --shadow-inner-glow: inset 0 2px 4px hsl(84 100% 59% / 0.1);
     
     /* Premium typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

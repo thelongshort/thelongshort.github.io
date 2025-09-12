@@ -11,64 +11,64 @@ export function Navigation() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       <MetricsCarousel />
-      <nav className="bg-gradient-glass backdrop-blur-md border-b border-accent-purple/20">
+      <nav className="bg-gradient-glass backdrop-blur-xl border-b border-white/10 shadow-glass">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="text-2xl font-display font-bold bg-gradient-text bg-clip-text text-transparent">
+          <Link to="/" className="flex items-center group">
+            <div className="text-2xl font-display font-bold bg-gradient-text bg-clip-text text-transparent group-hover:scale-105 transition-transform">
               Long & Short
             </div>
           </Link>
           
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             <Link 
               to="/" 
-              className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl transition-all duration-300 font-medium ${
                 isActive('/') 
-                  ? 'bg-gradient-accent text-white shadow-glow' 
-                  : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                  ? 'bg-primary text-primary-foreground shadow-neon' 
+                  : 'text-muted-foreground hover:text-foreground hover:bg-glass-accent backdrop-blur-sm'
               }`}
             >
               Home
             </Link>
             <Link 
               to="/analysis" 
-              className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl transition-all duration-300 font-medium ${
                 isActive('/analysis') 
-                  ? 'bg-gradient-accent text-white shadow-glow' 
-                  : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                  ? 'bg-primary text-primary-foreground shadow-neon' 
+                  : 'text-muted-foreground hover:text-foreground hover:bg-glass-accent backdrop-blur-sm'
               }`}
             >
               Market Analysis
             </Link>
             <Link 
               to="/events" 
-              className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl transition-all duration-300 font-medium ${
                 isActive('/events') 
-                  ? 'bg-gradient-accent text-white shadow-glow' 
-                  : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                  ? 'bg-primary text-primary-foreground shadow-neon' 
+                  : 'text-muted-foreground hover:text-foreground hover:bg-glass-accent backdrop-blur-sm'
               }`}
             >
               Events
             </Link>
             <Link 
               to="/key-deals" 
-              className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl transition-all duration-300 font-medium ${
                 isActive('/key-deals') 
-                  ? 'bg-gradient-accent text-white shadow-glow' 
-                  : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                  ? 'bg-primary text-primary-foreground shadow-neon' 
+                  : 'text-muted-foreground hover:text-foreground hover:bg-glass-accent backdrop-blur-sm'
               }`}
             >
               Key Moves
             </Link>
             <Link 
               to="/snapshot" 
-              className={`px-4 py-2 rounded-xl transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl transition-all duration-300 font-medium ${
                 isActive('/snapshot') 
-                  ? 'bg-gradient-accent text-white shadow-glow' 
-                  : 'text-muted-foreground hover:text-white hover:bg-white/10'
+                  ? 'bg-primary text-primary-foreground shadow-neon' 
+                  : 'text-muted-foreground hover:text-foreground hover:bg-glass-accent backdrop-blur-sm'
               }`}
             >
               Snapshot
@@ -76,11 +76,11 @@ export function Navigation() {
           </div>
           
           {/* CTA Button */}
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="hidden md:inline-flex text-muted-foreground hover:text-white hover:bg-white/10">
+          <div className="flex items-center space-x-3">
+            <Button variant="glass" className="hidden md:inline-flex">
               Sign In
             </Button>
-            <Button className="bg-gradient-button hover:shadow-purple text-white font-semibold transition-all duration-300 hover:scale-105 rounded-xl">
+            <Button variant="glow" size="lg">
               Access Platform
             </Button>
           </div>
