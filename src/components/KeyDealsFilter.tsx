@@ -13,12 +13,12 @@ const regions = [
 ]
 
 const countriesByRegion = {
-  "North America": ["United States", "Canada", "Mexico"],
-  "Europe": ["United Kingdom", "Germany", "France", "Switzerland", "Netherlands", "Italy", "Spain", "Sweden", "Denmark", "Norway"],
-  "Asia Pacific": ["Japan", "Australia", "South Korea", "New Zealand", "Taiwan", "Hong Kong", "Singapore"],
-  "Emerging Asia": ["China", "India", "Thailand", "Malaysia", "Indonesia", "Philippines", "Vietnam"],
-  "Latin America": ["Brazil", "Argentina", "Chile", "Colombia", "Peru", "Mexico"],
-  "Middle East & Africa": ["UAE", "Saudi Arabia", "Qatar", "South Africa", "Israel", "Turkey", "Egypt", "Nigeria"]
+  "North America": ["Canada", "Greenland", "Mexico", "United States"],
+  "Europe": ["Albania", "Andorra", "Armenia", "Austria", "Azerbaijan", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Georgia", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kosovo", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Turkey", "Ukraine", "United Kingdom", "Vatican City (Holy See)"],
+  "Asia Pacific": ["Australia", "Brunei", "Cook Islands", "Fiji", "French Polynesia", "Hong Kong", "Japan", "Kiribati", "Macau", "Marshall Islands", "Micronesia", "Nauru", "New Caledonia", "New Zealand", "Palau", "Papua New Guinea", "Samoa", "Singapore", "Solomon Islands", "South Korea", "Taiwan", "Tonga", "Tuvalu", "Vanuatu"],
+  "Emerging Asia": ["Afghanistan", "Bangladesh", "Bhutan", "Cambodia", "China", "East Timor (Timor-Leste)", "India", "Indonesia", "Kazakhstan", "Kyrgyzstan", "Laos", "Malaysia", "Maldives", "Mongolia", "Myanmar", "Nepal", "North Korea", "Pakistan", "Philippines", "Sri Lanka", "Tajikistan", "Thailand", "Turkmenistan", "Uzbekistan", "Vietnam"],
+  "Latin America": ["Antigua and Barbuda", "Anguilla", "Argentina", "Aruba", "Bahamas", "Barbados", "Belize", "Bermuda", "Bolivia", "Brazil", "Cayman Islands", "Chile", "Colombia", "Costa Rica", "Cuba", "Curaçao", "Dominica", "Dominican Republic", "Ecuador", "El Salvador", "Grenada", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Montserrat", "Nicaragua", "Panama", "Paraguay", "Peru", "Puerto Rico", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Sint Maarten", "Suriname", "Trinidad and Tobago", "Turks and Caicos Islands", "Uruguay", "Venezuela"],
+  "Middle East & Africa": ["Algeria", "Angola", "Bahrain", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cameroon", "Cape Verde (Cabo Verde)", "Central African Republic", "Chad", "Comoros", "Congo", "Djibouti", "DR Congo", "Egypt", "Equatorial Guinea", "Eritrea", "Eswatini", "Ethiopia", "Gabon", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Iran", "Iraq", "Israel", "Ivory Coast (Côte d'Ivoire)", "Jordan", "Kenya", "Kuwait", "Lebanon", "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger", "Nigeria", "Oman", "Palestine", "Qatar", "Rwanda", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Somalia", "South Africa", "South Sudan", "Sudan", "Syria", "Tanzania", "Togo", "Tunisia", "UAE (United Arab Emirates)", "Uganda", "Yemen", "Zambia", "Zimbabwe"]
 }
 
 const hedgeFundTypes = [
