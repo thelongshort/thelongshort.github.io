@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { TrendingUp, Building2, DollarSign, ArrowRight, ExternalLink } from "lucide-react"
+import { KeyDealsFilter } from "@/components/KeyDealsFilter"
 
 const keyTransactions = [
   {
@@ -132,6 +133,8 @@ export default function KeyDeals() {
               Latest significant institutional investor moves and capital allocations
             </p>
           </div>
+
+          <KeyDealsFilter />
 
           <div className="space-y-6">
             {keyTransactions.map((transaction, index) => (
