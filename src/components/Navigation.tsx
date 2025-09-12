@@ -1,9 +1,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search } from "lucide-react"
+import { Search, LogOut, Shield, User } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 import { MetricsCarousel } from "./MetricsCarousel"
+import { useAuth } from "@/hooks/useAuth"
 
 export function Navigation() {
   const location = useLocation()
@@ -79,8 +80,8 @@ export function Navigation() {
             </div>
           </div>
           
-          {/* Search Area */}
-          <div className="flex items-center flex-shrink-0">
+          {/* Search and Auth Area */}
+          <div className="flex items-center gap-4 flex-shrink-0">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input 
@@ -89,10 +90,43 @@ export function Navigation() {
                 className="pl-10 w-64 bg-glass-primary backdrop-blur-xl border-white/10 focus:border-primary/40 rounded-xl"
               />
             </div>
+            <AuthSection />
           </div>
         </div>
       </div>
       </nav>
+    </div>
+  )
+}
+
+function AuthSection() {
+  const { user, isAdmin, signOut } = useAuth()
+
+  if (!user) {
+    return (
+      <Link to="/auth">
+        <Button variant="outline" size="sm">
+          <User className="w-4 h-4 mr-2" />
+          Sign In
+        </Button>
+      </Link>
+    )
+  }
+
+  return (
+    <div className="flex items-center gap-2">
+      {isAdmin && (
+        <Link to="/admin">
+          <Button variant="outline" size="sm">
+            <Shield className="w-4 h-4 mr-2" />
+            Admin
+          </Button>
+        </Link>
+      )}
+      <Button variant="outline" size="sm" onClick={signOut}>
+        <LogOut className="w-4 h-4 mr-2" />
+        Sign Out
+      </Button>
     </div>
   )
 }
