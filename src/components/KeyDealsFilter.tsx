@@ -87,7 +87,7 @@ export function KeyDealsFilter({ onFilterChange }: KeyDealsFilterProps) {
         <h3 className="text-xl font-bold text-white">Filter Key Moves</h3>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Region Filter */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-accent-platinum">REGION</label>
@@ -147,35 +147,6 @@ export function KeyDealsFilter({ onFilterChange }: KeyDealsFilterProps) {
                   {type}
                 </SelectItem>
               ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Additional Filter Placeholders */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-accent-platinum">SUB-SECTOR</label>
-          <Select>
-            <SelectTrigger className="bg-background border-accent-gold/30 text-white">
-              <SelectValue placeholder="All Sub-Sectors" />
-            </SelectTrigger>
-            <SelectContent className="bg-background border-accent-gold/30">
-              <SelectItem value="all" className="text-white hover:bg-accent-gold/10 focus:bg-accent-gold/10">
-                All Sub-Sectors
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-accent-platinum">TERTIARY SECTOR</label>
-          <Select>
-            <SelectTrigger className="bg-background border-accent-gold/30 text-white">
-              <SelectValue placeholder="All Tertiary" />
-            </SelectTrigger>
-            <SelectContent className="bg-background border-accent-gold/30">
-              <SelectItem value="all" className="text-white hover:bg-accent-gold/10 focus:bg-accent-gold/10">
-                All Tertiary
-              </SelectItem>
             </SelectContent>
           </Select>
         </div>
