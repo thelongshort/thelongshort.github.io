@@ -16,7 +16,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <div className="text-2xl font-display font-bold bg-gradient-text bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+            <div className="text-2xl font-display font-bold text-primary group-hover:scale-105 transition-transform">
               Long & Short
             </div>
           </Link>
