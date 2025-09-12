@@ -6,6 +6,7 @@ import { Calendar, MapPin, Users, ArrowRight, Trophy, Briefcase, Loader2 } from 
 import { useEffect, useState } from "react"
 import { supabase } from "@/integrations/supabase/client"
 import { format } from "date-fns"
+import eventPlaceholder from "@/assets/event-placeholder.jpg"
 
 interface Event {
   id: string
@@ -72,6 +73,10 @@ export default function Events() {
       }
     }
     return format(start, 'MMMM d, yyyy')
+  }
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = eventPlaceholder
   }
   return (
     <div className="min-h-screen font-primary bg-background">
@@ -145,18 +150,29 @@ export default function Events() {
                   key={event.id}
                   className="group hover:shadow-gold transition-all duration-300 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-accent-gold/20 overflow-hidden"
                 >
-                  <CardHeader className="relative">
+                  {/* Event Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={event.image_url || eventPlaceholder}
+                      alt={event.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      onError={handleImageError}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     <div className="absolute top-4 right-4 space-y-2">
-                      <span className="block px-3 py-1 bg-accent-gold/10 text-accent-gold rounded-full text-xs font-medium">
+                      <span className="block px-3 py-1 bg-accent-gold/90 backdrop-blur-sm text-accent-foreground rounded-full text-xs font-medium">
                         {event.event_type}
                       </span>
                       {event.featured && (
-                        <span className="block px-3 py-1 bg-accent-blue/10 text-accent-blue rounded-full text-xs font-medium">
+                        <span className="block px-3 py-1 bg-accent-blue/90 backdrop-blur-sm text-white rounded-full text-xs font-medium">
                           Featured
                         </span>
                       )}
                     </div>
-                    <CardTitle className="text-xl font-bold text-white pr-24 leading-tight">
+                  </div>
+                  
+                  <CardHeader className="relative pb-4">
+                    <CardTitle className="text-xl font-bold text-white leading-tight">
                       {event.title}
                     </CardTitle>
                   </CardHeader>
