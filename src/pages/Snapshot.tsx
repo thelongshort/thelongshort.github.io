@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { TrendingUp, TrendingDown, DollarSign, Activity, Users, BarChart3 } from "lucide-react"
+import { KeyDealsFilter } from "@/components/KeyDealsFilter"
 
 const Snapshot = () => {
   const primaryMetrics = [
@@ -66,6 +67,8 @@ const Snapshot = () => {
               Real-time overview of fund performance, market metrics, and key insights
             </p>
           </div>
+
+          <KeyDealsFilter />
 
           {/* Primary Metrics Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
