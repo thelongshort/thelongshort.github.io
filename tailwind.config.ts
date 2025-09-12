@@ -68,7 +68,8 @@ export default {
 				'accent-navy': 'hsl(var(--accent-navy))',
 				'accent-blue': 'hsl(var(--accent-blue))',
 				'accent-success': 'hsl(var(--accent-success))',
-				'accent-danger': 'hsl(var(--accent-danger))'
+				'accent-danger': 'hsl(var(--accent-danger))',
+				'accent-lime': 'hsl(var(--accent-lime))'
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
@@ -76,14 +77,18 @@ export default {
 				'gradient-button': 'var(--gradient-button)',
 				'gradient-text': 'var(--gradient-text)',
 				'gradient-accent': 'var(--gradient-accent)',
-				'gradient-glass': 'var(--gradient-glass)'
+				'gradient-glass': 'var(--gradient-glass)',
+				'gradient-glow': 'var(--gradient-glow)',
+				'gradient-purple-glow': 'var(--gradient-purple-glow)'
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
 				'card': 'var(--shadow-card)',
 				'lift': 'var(--shadow-lift)',
 				'purple': 'var(--shadow-purple)',
-				'glass': 'var(--shadow-glass)'
+				'glass': 'var(--shadow-glass)',
+				'lime': 'var(--shadow-lime)',
+				'neon': 'var(--shadow-neon)'
 			},
 			fontFamily: {
 				'primary': 'var(--font-primary)',
