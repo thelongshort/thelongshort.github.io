@@ -2,7 +2,7 @@ import { Navigation } from "@/components/Navigation"
 import { Footer } from "@/components/Footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, MapPin, Users, ArrowRight, Trophy, Briefcase, Loader2 } from "lucide-react"
+import { Calendar, MapPin, Users, ArrowRight, Briefcase, Loader2 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { supabase } from "@/integrations/supabase/client"
 import { format } from "date-fns"
@@ -27,13 +27,6 @@ interface Event {
   created_at: string
   updated_at: string
 }
-
-const eventCategories = [
-  { name: "Multi-Strategy Events", count: "12", color: "accent-gold", icon: Trophy },
-  { name: "Quant Forums", count: "8", color: "accent-blue", icon: Briefcase },
-  { name: "Equity Conferences", count: "15", color: "accent-platinum", icon: Calendar },
-  { name: "Credit Symposiums", count: "6", color: "accent-navy", icon: Users }
-]
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([])
@@ -221,79 +214,6 @@ export default function Events() {
               ))}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Event Categories */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-white mb-6">
-              Event Categories
-            </h2>
-            <p className="text-xl text-accent-platinum">
-              Specialized events by hedge fund strategy and focus area
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {eventCategories.map((category, index) => {
-              const IconComponent = category.icon;
-              return (
-                <div 
-                  key={category.name}
-                  className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20 hover:shadow-gold transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="flex justify-center mb-4">
-                    <IconComponent className={`w-8 h-8 text-${category.color}`} />
-                  </div>
-                  <div className={`text-4xl font-bold text-${category.color} mb-2`}>
-                    {category.count}
-                  </div>
-                  <div className="text-accent-platinum font-medium">
-                    {category.name}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Networking Benefits */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold text-white mb-6">
-              Why Attend Our Events
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20">
-              <div className="w-16 h-16 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-accent-gold" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">Elite Network Access</h3>
-              <p className="text-accent-platinum">Connect with top-tier hedge fund managers, institutional investors, and industry thought leaders.</p>
-            </div>
-            
-            <div className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20">
-              <div className="w-16 h-16 bg-accent-blue/10 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <Trophy className="w-8 h-8 text-accent-blue" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">Strategy Insights</h3>
-              <p className="text-accent-platinum">Gain exclusive insights into successful hedge fund strategies and market positioning techniques.</p>
-            </div>
-            
-            <div className="text-center p-8 bg-card/50 backdrop-blur-sm rounded-lg shadow-lift border border-accent-gold/20">
-              <div className="w-16 h-16 bg-accent-platinum/10 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <Briefcase className="w-8 h-8 text-accent-platinum" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">Deal Flow Opportunities</h3>
-              <p className="text-accent-platinum">Discover investment opportunities and potential partnerships through curated networking sessions.</p>
-            </div>
-          </div>
         </div>
       </section>
 
