@@ -30,7 +30,7 @@ const HeroSection = () => {
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <span className="block text-foreground">Hedge Fund</span>
-                <span className="block bg-gradient-text bg-clip-text text-transparent">Intelligence</span>
+                <span className="block text-primary">Intelligence</span>
                 <span className="block text-foreground">Platform</span>
               </h1>
               

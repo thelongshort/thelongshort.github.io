@@ -19,7 +19,7 @@ All colors MUST be HSL for proper theming.
     --popover: 240 15% 8% / 0.95;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 84 100% 59%; /* GreenYellow #ADFF2F */
+    --primary: 84 100% 59%; /* Pure GreenYellow #ADFF2F */
     --primary-foreground: 0 0% 0%;
     
     --accent-purple: 270 100% 70%; /* Vibrant purple */
@@ -58,13 +58,9 @@ All colors MUST be HSL for proper theming.
     --gradient-hero: radial-gradient(ellipse at top, hsl(240 12% 3%) 0%, hsl(240 15% 8%) 40%, hsl(84 100% 59% / 0.03) 100%);
     --gradient-card: linear-gradient(135deg, hsl(240 15% 8% / 0.4) 0%, hsl(240 20% 12% / 0.6) 100%);
     --gradient-glass: linear-gradient(135deg, hsl(240 15% 8% / 0.3) 0%, hsl(240 20% 12% / 0.1) 100%);
-    --gradient-button: linear-gradient(135deg, hsl(84 100% 59%) 0%, hsl(84 90% 50%) 100%);
-    --gradient-text: linear-gradient(135deg, hsl(84 100% 59%) 0%, hsl(270 100% 70%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(84 100% 59%) 0%, hsl(320 100% 70%) 100%);
-    --gradient-mesh: conic-gradient(from 0deg at 50% 50%, hsl(84 100% 59% / 0.1) 0deg, hsl(270 100% 70% / 0.1) 120deg, hsl(320 100% 70% / 0.1) 240deg, hsl(84 100% 59% / 0.1) 360deg);
-    --gradient-glow: radial-gradient(circle at center, hsl(84 100% 59% / 0.2) 0%, transparent 70%);
-    --gradient-purple-glow: radial-gradient(circle at center, hsl(270 100% 70% / 0.15) 0%, transparent 70%);
-    --gradient-pink-glow: radial-gradient(circle at center, hsl(320 100% 70% / 0.15) 0%, transparent 70%);
+    --gradient-button: hsl(84 100% 59%); /* Pure #ADFF2F color */
+    --gradient-text: hsl(84 100% 59%); /* Pure #ADFF2F color */
+    --gradient-accent: hsl(84 100% 59%); /* Pure #ADFF2F color */
     
     /* Advanced glassmorphism shadows */
     --shadow-glow: 0 8px 32px hsl(84 100% 59% / 0.4);
